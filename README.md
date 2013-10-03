@@ -20,7 +20,7 @@ For now I have implemented the logic with following languages:
 - Perl (This was the original implementation)
 - HTML5 / Javascript
 
-Next I was planning to port it at least to these languages:
+Next I am planning to port it at least to these languages:
 - Python
 - Visual C#
 - Java
