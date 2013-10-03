@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <script>
+
+            function print_2D(data)
+            {
+                for(var i = 0; data.length; i++){
+                    entry = data[i];
+                    for(var j = 0; j < entry.length; j++){
+                        document.write(data[i][j] + " ")
+                    }
+                    document.write("<br>")
+                }
+            }
+
+            function get_biggest(data) {
+                var biggest = 0;
+                for(var i = 0; data.length; i++){
+                    entry = data[i];
+                    for(var j = 0; j < entry.length; j++){
+                        if (data[i][j] > biggest) {
+                            biggest = data[i][j];
+                        }
+                    }
+                }
+                return biggest;
+            }
+            
+            function get_value()
+            {
+                var min = -1;
+                var max = 1;
+                var rnd = Math.random() * (max - min) + min;
+                return Math.round(rnd);
+                
+            }
+
+
+
+            function get_valid_move(x,y)
+            {
+                while (1){
+                    var x_move = get_value();
+                    var y_move = get_value();
+                    if (x == 0 && y == 0 && x_move != -1 && y_move != -1 && !(x_move == 0 && y_move == 0)) {
+			return [x_move,y_move];
+                    }
+                    if (x > 0 && x < 14 && y == 0 && y_move != -1 && !(x_move == 0 && y_move == 0)) {
+			return [x_move,y_move];
+                    }
+                    if (x == 14 && y == 0 && x_move != 1 && y_move != -1 && !(x_move == 0 && y_move == 0)) {
+			return [x_move,y_move];
+                    }
+                    if (x == 0 && y > 0 && y < 14 && x_move != -1 && !(x_move == 0 && y_move == 0)) {
+			return [x_move,y_move];
+                    }
+                    if (x > 0 && x < 14 && y > 0 && y < 14 && !(x_move == 0 && y_move == 0)) {
+			return [x_move,y_move];
+                    }
+                    if (x == 14 && y > 0 && y < 14 && x_move != 1 && !(x_move == 0 && y_move == 0)) {
+			return [x_move,y_move];
+                    }
+                    if (x == 0 && y == 14 && x_move != -1 && y_move != 1 && !(x_move == 0 && y_move == 0)) {
+			return [x_move,y_move];
+                    }
+                    if (x > 0 && x < 14 && y == 14 && y_move != 1 && !(x_move == 0 && y_move == 0)) {
+			return [x_move,y_move];
+                    }
+                    if (x == 14 && y == 14 && x_move != 1 && y_move != 1 && !(x_move == 0 && y_move == 0)) {
+			return [x_move,y_move];
+                    }
+                }
+            }
+
+            function handle_bugs(x,y,bugs)
+            {
+                var move_x, move_y;
+                for (var i = 0; i < bugs; i++){
+                    var moves = get_valid_move(x,y);
+                    var move_x = moves[0];
+                    var move_y = moves[1];
+                    data[x+move_x][y+move_y]++;
+                    data[x][y]--;
+                }
+            }
+
+            function show_25()
+            {
+                document.write("Distribution (RUN:25):\n<br>\n<br>");
+                print_2D(state_25_data);
+            }
+
+            function show_50()
+            {
+                document.write("Distribution (RUN:50):\n<br>\n<br>");
+                print_2D(state_50_data);
+            }
+
+            function show_100()
+            {
+                document.write("Distribution (RUN:100):\n<br>\n<br>");
+                print_2D(state_100_data);
+            }
+
+            var data = [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                         [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                         [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                         [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                         [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                         [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                         [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                         [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                         [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                         [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                         [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                         [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                         [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                         [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                         [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]];
+    
+            var runs = 0;
+            var start_state_data;
+            var state_25_data;
+            var state_50_data;
+            var state_100_data;
+    
+            while(runs < 101) {
+                runs++;
+                start_state_data = data.slice(0);
+                for (x_t = 0; x_t < 15; x_t++){
+                    for (y_t = 0; y_t < 15; y_t++){
+			      if (start_state_data[x_t][y_t] != 0) {
+				handle_bugs(x_t,y_t,start_state_data[x_t][y_t]);
+			}
+                    }
+                }
+                if (runs == 25)
+                {
+                        state_25_data = data.slice(0);
+                }
+                if (runs == 50)
+                {
+                        state_50_data = data.slice(0);
+                }
+                if (runs == 100)
+                {
+                        state_100_data = data.slice(0);
+                }
+            }
+
+        </script>
+        <button onclick="show_25()">Show 25</button>
+        <button onclick="show_50()">Show 50</button>
+        <button onclick="show_100()">Show 100</button>
+    </body>
+</html>

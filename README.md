@@ -6,8 +6,8 @@ This repository is used for storing code snipplets for code training.
 Flee hopping
 ************
 
-I came across this interesting programming challenge, which I thought would be interesting
-to implement as a way to see how it could be done on different languages. The setup is like this:
+I came across this interesting programming challenge, which I thought would be nice
+to implement as a way to learn and see how it could be done on different languages. The setup is like this:
 
 - We have a 15 x 15 board
 - On each square there sits a flee
@@ -22,5 +22,6 @@ For now I have implemented the logic with following languages:
 
 Next I was planning to port it at least to these languages:
 - Python
-- C#
+- Visual C#
 - Java
+- Ruby
