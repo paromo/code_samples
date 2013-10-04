@@ -19,9 +19,9 @@ to implement as a way to learn and see how it could be done on different languag
 For now I have implemented the logic with following languages:
 - Perl (This was the original implementation)
 - HTML5 / Javascript
+- Python
 
 Next I am planning to port it at least to these languages:
-- Python
 - Visual C#
 - Java
 - Ruby
